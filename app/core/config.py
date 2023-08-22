@@ -29,6 +29,9 @@ class Settings(BaseSettings):
     min_length_string = 1
     full_amount_minimum = 0
 
+    rows = 100
+    columns = 3
+
     class Config:
         env_file = ".env"
 

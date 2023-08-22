@@ -21,7 +21,7 @@ async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
                     "sheetType": "GRID",
                     "sheetId": 0,
                     "title": "Лист1",
-                    "gridProperties": {"rowCount": 100, "columnCount": 3},
+                    "gridProperties": {"rowCount": settings.rows, "columnCount": settings.columns},
                 }
             }
         ],

@@ -23,7 +23,7 @@ async def transfer_invested_amount_lt(transfer_to, transfer_from, session):
     transfer_from.fully_invested = True
     transfer_from.close_date = datetime.datetime.utcnow()
     if transfer_to.full_amount == transfer_to.invested_amount:
-        transfer_to.fully_invested = True
+        transfer_to.fully_invested.is_(True)
         transfer_to.close_date = datetime.datetime.utcnow()
 
     session.add(transfer_to)
