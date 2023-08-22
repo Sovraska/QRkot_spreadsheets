@@ -9,7 +9,7 @@ from app.models import CharityProject, Donation
 async def check_is_not_full_amount(model, session) -> List:
     """getting unclosed instances of some model"""
     investments = await session.execute(
-        select(model).where(model.fully_invested == False)  # noqa: E712
+        select(model).where(model.fully_invested.is_(False))  # noqa: E712
     )
     return investments.scalars().all()
 
@@ -23,7 +23,7 @@ async def transfer_invested_amount_lt(transfer_to, transfer_from, session):
     transfer_from.fully_invested = True
     transfer_from.close_date = datetime.datetime.utcnow()
     if transfer_to.full_amount == transfer_to.invested_amount:
-        transfer_to.fully_invested.is_(True)
+        transfer_to.fully_invested = True
         transfer_to.close_date = datetime.datetime.utcnow()
 
     session.add(transfer_to)
